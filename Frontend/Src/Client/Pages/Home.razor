@@ -1,0 +1,293 @@
+﻿@page "/"
+@using Infrastructure.Services
+
+<PageTitle>Главная</PageTitle>
+
+<section class="section hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <h2 class="h1 hero-title">ПРОСТОЙ СПОСОБ ПРИЕМА В АРЕНДУ</h2>
+      <p class="hero-text">
+        Номер один в городе Казань!
+      </p>
+    </div>
+
+    <div class="hero-banner"></div>
+
+    <EditForm class="hero-form" Model="_request" OnValidSubmit="SubmitFormAsync">
+
+      <DataAnnotationsValidator/>
+      <div class="input-wrapper">
+        <label for="input-1" class="input-label">Тип спецтехники</label>
+
+        <InputSelect @bind-Value="@_request.EquipmentId" name="car-model" id="input-1" class="input-field">
+          @if (_request.EquipmentId == 0)
+          {
+            <option value="0" selected>Не выбрано</option>
+          }
+          @foreach (var equipment in _equipmentsList)
+          { 
+            <option value="@equipment.Id">@equipment.Name</option> 
+          }
+        </InputSelect>
+        <ValidationMessage For="() => _request.EquipmentId"/>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="input-2" class="input-label">Кол-во часов на аренду техники</label>
+
+        <InputNumber @bind-Value="@_request.CountRentHours" name="monthly-pay" id="input-2" class="input-field"/>
+        <ValidationMessage For="() => _request.CountRentHours"/>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="input-3" class="input-label">Выберите дату аренды</label>
+
+        <InputDate @bind-Value="@_request.Arrived" name="year" id="input-3" class="input-field"/>
+        <ValidationMessage For="() => _request.Arrived"/>
+      </div>
+
+      <button type="submit" class="btn">Создать заказ</button>
+
+    </EditForm>
+
+  </div>
+</section>
+
+<section class="section featured-car" id="featured-car">
+  <div class="container">
+
+    <div class="title-wrapper">
+      <h2 class="h2 section-title">Наши услуги</h2>
+    </div>
+
+    <ul class="featured-car-list">
+
+      @foreach (var equipment in _equipmentsList)
+      {
+        <li>
+          <div class="featured-car-card">
+
+            <figure class="card-banner">
+              <img src="@(ApplicationConstants.BackendAddress + @equipment.PicturePath)" alt="" loading="lazy" width="440" height="300"
+                   class="w-100">
+            </figure>
+
+            <div class="card-content">
+
+              <div class="card-title-wrapper">
+                <h3 class="h3 card-title">
+                  <a href="#">@equipment.Name</a>
+                </h3>
+              </div>
+
+              <div class="card-description">
+                <span class="card-item-text">@equipment.Description</span>
+              </div>
+
+              <div class="card-price-wrapper">
+
+                <p class="card-price">
+                  <strong>@equipment.CostOneHour руб</strong> / в час
+                </p>
+
+                <a href="#home" @onclick="() => SelectEquipment(equipment.Id)" class="btn">Взять</a>
+
+              </div>
+
+            </div>
+
+          </div>
+        </li>
+      }
+     
+    </ul>
+
+  </div>
+</section>
+
+
+
+<section class="section get-start" id="get-start">
+  <div class="container">
+
+
+    <h2 class="h2 section-title">4 шага чтоб начать работать с нами</h2>
+
+    <ul class="get-start-list">
+
+      <li>
+        <div class="get-start-card">
+
+          <div class="card-icon icon-1">
+            <ion-icon name="person-add-outline"></ion-icon>
+          </div>
+
+          <h3 class="card-title">Пройдите регистрацию</h3>
+
+          <p class="card-text">
+            Пройдите регистрацию введя свои личные данные.
+          </p>
+
+          <AuthorizeView>
+            <NotAuthorized>
+               <a @onclick="ShowSignUpModal" class="card-link">Зарегистрироваться</a>
+            </NotAuthorized>
+          </AuthorizeView>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="get-start-card">
+
+          <div class="card-icon icon-3">
+            <ion-icon name="bag-check-outline"></ion-icon>
+          </div>
+
+          <h3 class="card-title">Подайте заявку на аренду спецтехники</h3>
+
+          <p class="card-text">
+            Выберите нужный тип техники, кол-во часов на которые будет арендована техника и дату получения оборудования.
+          </p>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="get-start-card">
+
+          <div class="card-icon icon-2">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+
+          <h3 class="card-title">Ожидайте звонка от оператора</h3>
+
+          <p class="card-text">
+            Оператор свяжится с вами и обсудит детали сделки, скоректирует оплату и прочие детали сделки.
+          </p>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="get-start-card">
+
+          <div class="card-icon icon-4">
+            <ion-icon name="card-outline"></ion-icon>
+          </div>
+
+          <h3 class="card-title">Завершите сделку</h3>
+
+          <p class="card-text">
+            После того как закончится время ренты оборудования сдайте его соотруднику предприятия.
+          </p>
+
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+      
+@code{
+    [Inject] IEquipmentManager EquipmentManager { get; set; } = default!;
+    [Inject] IJSRuntime JsRuntime { get; set; } = default!;
+    [Inject] IOrderManager OrderManager { get; set; } = default!;
+    [Inject] CustomAuthStateProvider CustomAuthStateProvider { get; set; } = default!;
+    [CascadingParameter] IModalService ModalService { get; set; } = default!;
+    [Inject] ITokenService TokenService { get; set; } = default!;
+
+
+    
+    private bool _isBusy;
+    private IEnumerable<EquipmentResponse> _equipmentsList = [];
+    private CreateOrderRequest _request = new CreateOrderRequest(){
+      Arrived = DateTime.Now.AddDays(1)
+    };
+
+    private void SelectEquipment(int id) => _request.EquipmentId = id;
+
+    private void ShowSignUpModal() => ModalService.Show<SignUp>("Регистрация");
+
+    
+    private async Task SubmitFormAsync()
+    {
+      try
+      {
+        _isBusy = true;
+        
+        var authState = await CustomAuthStateProvider.GetAuthenticationStateAsync();
+        var isAuthenticate = authState.User.Identity.IsAuthenticated;
+        if (!isAuthenticate)
+        {
+          await JsRuntime.InvokeVoidAsync("alert", "Прежде чем отправить заявку пройдите авторизацию!");
+          ModalService.Show<SignIn>("Авторизация");
+          return;
+        }
+
+        var token = await TokenService.GetAuthTokenAsync();
+        var userId = Guid.Parse(TokenService.GetUserIdFromAuthToken(token));
+        _request.UserId = userId;
+        var result = await OrderManager.CreateAsync(_request);
+        if (!result.Succeeded)
+        {
+          foreach (var message in result.Messages)
+            await JsRuntime.InvokeVoidAsync("alert", message);
+          return;
+        }
+        foreach (var message in result.Messages)
+          await JsRuntime.InvokeVoidAsync("alert", message);
+        ModalService.Show<OrderCreated>();
+      }
+      catch (Exception ex)
+      {
+        await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+      }
+      finally
+      {
+        _isBusy = false;
+      }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    { 
+        await base.OnInitializedAsync();
+        await LoadDataAsync();
+    }
+    
+    private async Task LoadEquipmentsDataAsync()
+    {
+        var result = await EquipmentManager.GetAllAsync();
+        if (!result.Succeeded)
+        {
+        foreach (var message in result.Messages)
+            await JsRuntime.InvokeVoidAsync("alert", message);
+        return;
+    }
+
+      _equipmentsList = result.Data;
+    }
+        
+    private async Task LoadDataAsync()
+    {
+        try
+        {
+          _isBusy = true;
+          
+          await LoadEquipmentsDataAsync();
+        }
+        catch (Exception ex)
+        {
+          await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+        }
+        finally
+        {
+          _isBusy = false;
+        }
+    }
+
+}
+      
+      

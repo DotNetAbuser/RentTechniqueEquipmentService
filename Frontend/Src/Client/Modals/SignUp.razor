@@ -1,0 +1,92 @@
+﻿<EditForm class="hero-form" Model="_request" OnValidSubmit="SubmitFormAsync">
+  <DataAnnotationsValidator/>
+  <div class="input-wrapper">
+    <label for="input-first-name" class="input-label">Фамилия</label>
+
+    <InputText @bind-Value="@_request.LastName" name="monthly-pay" id="input-first-name" class="input-field"/>
+    <ValidationMessage For="() => _request.LastName"/>
+  </div>
+  
+  <div class="input-wrapper">
+    <label for="input-last-name" class="input-label">Имя</label>
+  
+    <InputText @bind-Value="@_request.FirstName" name="monthly-pay" id="input-last-name" class="input-field"/>
+    <ValidationMessage For="() => _request.FirstName"/>
+  </div>
+  
+  <div class="input-wrapper">
+    <label for="input-middle-name" class="input-label">Отчество (при наличие)</label>
+    
+    <InputText @bind-Value="@_request.MiddleName" name="monthly-pay" id="input-middle-name" class="input-field"/>
+    <ValidationMessage For="() => _request.MiddleName"/>
+  </div>
+  
+  <div class="input-wrapper">
+    <label for="input-email" class="input-label">Почта</label>
+    
+    <InputText type="email" @bind-Value="@_request.Email" name="monthly-pay" id="input-email" class="input-field"/>
+    <ValidationMessage For="() => _request.Email"/>  
+  </div>
+  
+  
+    <div class="input-wrapper">
+      <label for="input-phone-number" class="input-label">Номер телефона</label>
+      
+      <InputText type="phone" @bind-Value="@_request.PhoneNumber"
+                 name="monthly-pay" id="input-phone-number" class="input-field"/>
+      <ValidationMessage For="() => _request.PhoneNumber"/>
+    </div>
+
+  <div class="input-wrapper">
+    <label for="input-password" class="input-label">Пароль</label>
+
+    <InputText type="password" @bind-Value="@_request.Password"
+               name="year" id="input-password" class="input-field"/>
+    <ValidationMessage For="() => _request.Password"/>
+  </div>
+
+  <button type="submit" class="btn">Зарегистрироваться</button>
+
+</EditForm>
+
+@code{
+  [Inject] IJSRuntime JsRuntime { get; set; } = default!;
+  [Inject] NavigationManager NavigationManager { get; set; } = default!;
+  [Inject] IUserManager UserManager { get; set; } = default!;
+  [CascadingParameter] IModalService ModalService { get; set; } = default!;
+  
+  private bool _isBusy;
+  private SignUpRequest _request = new();
+
+  private async Task SubmitFormAsync()
+  {
+    try
+    {
+      _isBusy = true;
+
+      var result = await UserManager.CreateAsync(_request);
+      if (!result.Succeeded)
+      {
+        foreach (var message in result.Messages)
+          await JsRuntime.InvokeVoidAsync("alert", message);
+        return;
+      }
+
+      foreach (var message in result.Messages)
+        await JsRuntime.InvokeVoidAsync("alert", message);
+      NavigationManager.NavigateTo("/", true, true);
+      ModalService.Show<SignIn>("Авторизация");
+    }
+    catch (Exception ex)
+    {
+      await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+    }
+    finally
+    {
+      _isBusy = false;
+    }
+  }
+  
+  
+
+}

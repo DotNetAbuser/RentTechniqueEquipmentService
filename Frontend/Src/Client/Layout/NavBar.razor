@@ -1,0 +1,105 @@
+﻿<div class="container">
+
+    <div class="@_overlayState"></div>
+
+    <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" alt="">
+    </a>
+
+    <nav class="@_navBarState">
+        <ul class="navbar-list">
+
+            <li>
+                <a href="#home" class="navbar-link">Главная</a>
+            </li>
+
+            <li>
+                <a href="#featured-car" class="navbar-link">Наши услуги</a>
+            </li>
+
+            <li>
+                <a href="#get-start" class="navbar-link">Помощь</a>
+            </li>
+            <AuthorizeView>
+                <Authorized>
+                    <li @onclick="SignOutAsync">
+                        <a class="navbar-link">Выйти</a>
+                    </li>
+                </Authorized>
+                <NotAuthorized>
+                    <li @onclick="ShowSignInModal">
+                        <a class="navbar-link">Войти</a>
+                    </li>
+
+                    <li @onclick="ShowSignUpModal">
+                        <a class="navbar-link">Зарегистрироваться</a>
+                    </li>
+                </NotAuthorized>
+            </AuthorizeView>
+     
+        </ul>
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-contact">
+            <a href="tel:88432345678" class="contact-link">8 (843) 234 56 78</a>
+
+            <span class="contact-time">Понедельник - Воскресенье: 08:00 - 21:00 </span>
+        </div>
+
+        <a href="tel:88432345678" class="btn">
+            <ion-icon name="call-outline"></ion-icon>
+
+            <span id="aria-label-txt">Позвонить</span>
+        </a>
+
+        <button @onclick="ChangeMenuState" class="nav-toggle-btn">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+        </button>
+
+    </div>
+
+</div>
+
+@code{
+    [CascadingParameter] IModalService ModalService { get; set; } = default!;
+    [Inject] CustomAuthStateProvider CustomAuthStateProvider { get; set; } = default!;
+    [Inject] NavigationManager NavigationManager { get; set; } = default!;
+    
+    
+    private const string NavBarClass = "navbar";
+    private const string NavBarActiveClass = "navbar active";
+
+    private string _navBarState = NavBarClass;
+
+    private const string OverlayClass = "overlay";
+    private const string OverlayActiveClass = "overlay active";
+
+    private string _overlayState = OverlayClass;
+    
+    private void ChangeMenuState()
+    {
+        _navBarState = _navBarState == NavBarClass
+            ? NavBarActiveClass
+            : NavBarClass;
+
+        _overlayState = _overlayState == OverlayClass
+            ? OverlayActiveClass
+            : OverlayClass;
+    }
+
+    private async Task SignOutAsync()
+    {
+        await CustomAuthStateProvider.MarkUserAsLoggedOut();
+        NavigationManager.NavigateTo("/", true, true);
+    }
+
+    private void ShowSignInModal() => ModalService.Show<SignIn>("Авторизация");
+    
+    private void ShowSignUpModal() => ModalService.Show<SignUp>("Регистрация");
+
+
+}

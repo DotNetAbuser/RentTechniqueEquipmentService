@@ -1,0 +1,56 @@
+﻿<EditForm class="hero-form" Model="_request" OnValidSubmit="SubmitFormAsync">
+  <DataAnnotationsValidator/>
+  <div class="input-wrapper">
+    <label for="input-phone-number" class="input-label">Номер телефона</label>
+
+    <InputText @bind-Value="@_request.PhoneNumber" name="monthly-pay" id="input-phone-number" class="input-field"/>
+    <ValidationMessage For="() => _request.PhoneNumber"/>
+  </div>
+
+  <div class="input-wrapper">
+    <label for="input-password" class="input-label">Пароль</label>
+
+    <InputText type="password" @bind-Value="@_request.Password" name="year" id="input-password" class="input-field"/>
+    <ValidationMessage For="() => _request.Password"/>
+  </div>
+
+  <button type="submit" class="btn">Войти</button>
+</EditForm>
+
+@code{
+  [Inject] IJSRuntime JsRuntime { get; set; } = default!;
+  [Inject] ITokenManager TokenManager { get; set; } = default!;
+  [Inject] NavigationManager NavigationManager { get; set; } = default!;
+  
+  private bool _isBusy;
+  private SignInRequest _request = new();
+
+
+  private async Task SubmitFormAsync()
+  {
+    try
+    {
+      _isBusy = true;
+
+      var result = await TokenManager.SignInAsync(_request);
+      if (!result.Succeeded)
+      {
+        foreach (var message in result.Messages)
+          await JsRuntime.InvokeVoidAsync("alert", message);
+        return;
+      }
+
+      foreach (var message in result.Messages)
+        await JsRuntime.InvokeVoidAsync("alert", message);
+      NavigationManager.NavigateTo("/", true, true);
+    }
+    catch (Exception ex)
+    {
+      await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+    }
+    finally
+    {
+      _isBusy = false;
+    }
+  }
+}
