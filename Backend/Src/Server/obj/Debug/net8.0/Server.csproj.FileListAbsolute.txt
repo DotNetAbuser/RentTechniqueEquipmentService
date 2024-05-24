@@ -120,3 +120,4 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Server
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Server\obj\Debug\net8.0\Server.pdb
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Server\obj\Debug\net8.0\ref\Server.dll
+C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Server\obj\Debug\net8.0\Server.sourcelink.json

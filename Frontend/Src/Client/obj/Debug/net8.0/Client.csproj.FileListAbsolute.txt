@@ -1109,3 +1109,4 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Clien
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\refint\Client.dll
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.pdb
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\ref\Client.dll
+C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.sourcelink.json

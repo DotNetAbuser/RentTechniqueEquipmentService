@@ -53,7 +53,6 @@
   [Inject] IJSRuntime JsRuntime { get; set; } = default!;
   [Inject] NavigationManager NavigationManager { get; set; } = default!;
   [Inject] IUserManager UserManager { get; set; } = default!;
-  [CascadingParameter] IModalService ModalService { get; set; } = default!;
   
   private bool _isBusy;
   private SignUpRequest _request = new();
@@ -75,7 +74,6 @@
       foreach (var message in result.Messages)
         await JsRuntime.InvokeVoidAsync("alert", message);
       NavigationManager.NavigateTo("/", true, true);
-      ModalService.Show<SignIn>("Авторизация");
     }
     catch (Exception ex)
     {

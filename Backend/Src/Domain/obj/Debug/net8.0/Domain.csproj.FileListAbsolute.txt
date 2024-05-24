@@ -10,3 +10,4 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Domain
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Domain\obj\Debug\net8.0\refint\Domain.dll
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Domain\obj\Debug\net8.0\Domain.sourcelink.json
