@@ -74,8 +74,8 @@ public class EquipmentService(
             return Result<string>.Fail("Тип оборудования с данным идентификатором!");
 
         equipmentEntity.Name = request.Name;
-        equipmentEntity.Description = equipmentEntity.Description;
-        equipmentEntity.CostOneHour = equipmentEntity.CostOneHour;
+        equipmentEntity.Description = request.Description;
+        equipmentEntity.CostOneHour = request.CostOneHour;
         await equipmentRepository.UpdateAsync(equipmentEntity);
         return Result<string>.Success("Тип оборудования успешно обновлён.");
     }

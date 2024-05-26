@@ -407,6 +407,11 @@ button, a { transition: var(--transition); }
     text-transform: uppercase;
 }
 
+.approximate-price{
+    padding: 10px 20px;
+    grid-column: span 2;
+}
+
 
 
 

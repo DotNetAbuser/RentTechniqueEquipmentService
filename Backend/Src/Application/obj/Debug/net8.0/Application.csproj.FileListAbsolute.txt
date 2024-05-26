@@ -10,6 +10,7 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Applic
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Application.sourcelink.json
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\Application.dll
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Backend\Src\Application\obj\Debug\net8.0\refint\Application.dll

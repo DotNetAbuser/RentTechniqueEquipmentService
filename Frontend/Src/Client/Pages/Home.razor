@@ -15,7 +15,6 @@
     <div class="hero-banner"></div>
 
     <EditForm class="hero-form" Model="_request" OnValidSubmit="SubmitFormAsync">
-
       <DataAnnotationsValidator/>
       <div class="input-wrapper">
         <label for="input-1" class="input-label">Тип спецтехники</label>
@@ -49,6 +48,17 @@
 
       <button type="submit" class="btn">Создать заказ</button>
 
+      @if (_request.EquipmentId != 0 && _request.CountRentHours > 0)
+      {
+        <div class="approximate-price">
+          <hr/>
+          <h2>О заказе</h2>
+          <h4>Тип тех. оборудования: @(_equipmentsList.SingleOrDefault(x => x.Id == _request.EquipmentId)!.Name)</h4>
+          <h4>Примерная стоимость: @(_equipmentsList.SingleOrDefault(x => x.Id == _request.EquipmentId)!.CostOneHour * _request.CountRentHours)</h4>
+          <h4>Дата взятия оборудования в аренду: @_request.Arrived.ToString("dd.MM.yyyy")</h4>
+        </div>
+      }
+  
     </EditForm>
 
   </div>

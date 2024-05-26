@@ -666,6 +666,7 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Clien
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.AssemblyInfo.cs
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.csproj.CoreCompileInputs.cache
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.sourcelink.json
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\webcil\Blazored.Modal.wasm
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\webcil\Blazored.SessionStorage.wasm
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Authorization.wasm
@@ -1109,4 +1110,3 @@ C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Clien
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\refint\Client.dll
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.pdb
 C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\ref\Client.dll
-C:\Users\ilyao\Desktop\Projects\RentTechniqueEquipmentService\Frontend\Src\Client\obj\Debug\net8.0\Client.sourcelink.json
