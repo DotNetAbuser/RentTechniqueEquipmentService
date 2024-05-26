@@ -54,13 +54,13 @@ public class EquipmentRepository(
     {
         return await dbContext.Equipments
             .AsNoTracking()
-            .AnyAsync(x => x.Id == id && x.Name == name);
+            .AnyAsync(x => x.Id != id && x.Name == name);
     }
 
     public async Task<bool> IsExistForUpdateByDescription(int id, string description)
     {
         return await dbContext.Equipments
             .AsNoTracking()
-            .AnyAsync(x => x.Id == id && x.Description == description);
+            .AnyAsync(x => x.Id != id && x.Description == description);
     }
 }
