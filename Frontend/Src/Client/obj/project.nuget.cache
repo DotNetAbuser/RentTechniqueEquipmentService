@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZoO5h+TL26lRdPOdEi/KPADsr1mstOlkHzlTkU2V3Sqv8tDRlP20yjHIy8rdGPDtUFy1bGGQiTnFyOKKcsplcQ==",
+  "dgSpecHash": "Kg+fZJkqusrDcXCHm2XDswlFpNwGzaCztSaRZlNsQR+NnzNbMQ70sbVALs3CvaYSlSuhCI2lckF9dPWS1HG4cA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ilyao\\Desktop\\Projects\\RentTechniqueEquipmentService\\Frontend\\Src\\Client\\Client.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,6 @@
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.5.2\\microsoft.identitymodel.tokens.7.5.2.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.jsinterop\\8.0.5\\microsoft.jsinterop.8.0.5.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.jsinterop.webassembly\\8.0.4\\microsoft.jsinterop.webassembly.8.0.4.nupkg.sha512",
-    "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.4\\microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.4\\microsoft.net.sdk.webassembly.pack.8.0.4.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\ilyao\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.5.2\\system.identitymodel.tokens.jwt.7.5.2.nupkg.sha512",

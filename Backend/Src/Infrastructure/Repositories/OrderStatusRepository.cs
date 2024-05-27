@@ -47,6 +47,6 @@ public class OrderStatusRepository(
     {
         return await dbContext.OrderStatuses
             .AsNoTracking()
-            .AnyAsync(x => x.Id == id && x.Name == name);
+            .AnyAsync(x => x.Id != id && x.Name == name);
     }
 }
